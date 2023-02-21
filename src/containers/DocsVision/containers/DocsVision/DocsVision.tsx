@@ -4,8 +4,13 @@ import classNames from './DocsVision.module.scss'
 import Loader from "../../components/Loader";
 import {observer} from "mobx-react";
 import Notifications from "../../components/Notifications";
+import {useEffect} from "react";
+import store from "../../stores/store";
 
 const DocsVision = observer(() => {
+  useEffect(() => {
+    store.loadData();
+  }, [])
   return (
     <>
       <Loader />
@@ -13,7 +18,7 @@ const DocsVision = observer(() => {
       <div className={classNames.root}>
         <LocationsTab />
         <ItemsTab />
-    </div>
+      </div>
     </>
   )
 })

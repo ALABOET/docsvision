@@ -25,7 +25,7 @@ const Node = observer(({ node, style, dragHandle }: NodeRendererProps<any>) => {
           sx={{fontSize: isMobile ? '12px' : '20px', color: node.isSelected ? 'red' : '', lineHeight: isMobile ? 0 : '', textTransform: 'unset'}}
           className={classNames.text}
         >
-          🗀 {node.data.name} {!store.nodeIsEmpty(node.data.id) && !node.children?.length ? '🟢' : store.nodeIsEmpty(node.data.id) && !node.children?.length ?  '🔴' : ''}
+          {node.isOpen ? '🗁' : '🗀'} {node.data.name} {!store.nodeIsEmpty(node.data.id) && !node.children?.length ? '🟢' : store.nodeIsEmpty(node.data.id) && !node.children?.length ?  '🔴' : ''}
         </Typography>
       </div>
     </div>
@@ -35,9 +35,6 @@ const Node = observer(({ node, style, dragHandle }: NodeRendererProps<any>) => {
 const LocationsTab = observer(() => {
   const [dataIsLoaded, setDataIsLoaded] = useState(false)
   const isMobile = useMedia('(max-width: 1300px)');
-  useEffect(() => {
-    store.loadData();
-  }, [])
   useEffect(() => {
     if (store.locationsTree.length) setDataIsLoaded(true)
   }, [store.locationsTree.length])
