@@ -48,6 +48,7 @@ class Store {
           id: x.id,
           data: x.data(),
           name: x.data().name,
+          // @ts-ignore
           parts: x.data().parts && x.data().parts.map((part) => part.id),
           parent_id: undefined,
         }));
@@ -62,6 +63,7 @@ class Store {
 
           const arrayToTree = ((items: any, id = undefined, link = 'parent_id') =>
           items.filter((item: any) => item[link] === id)
+            // @ts-ignore
             .map((item: ItemData) => ({ ...item, children: arrayToTree(items, item.id) })))
 
         this.setLocationsTree(arrayToTree([...docs]))
