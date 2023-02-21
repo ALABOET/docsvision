@@ -68,17 +68,20 @@ class Store {
 
         this.setLocationsTree(arrayToTree([...docs]))
       });
+      this.refreshItemsData();
+    }
+
+    public refreshItemsData(): void {
       //@ts-ignore
       firebase.firestore().collection("inventory").get().then(response => {
         let docs = response.docs.map((x: ItemsData) => ({
           id: x.id,
           data: x.data(),
           placeId: x.data().place?.id
-      }));
+        }));
         this.setItems(docs)
       });
     }
-
     public setLocationsTree(data: LocationsData[]): void {
       this.locationsTree = data
     }
@@ -96,6 +99,7 @@ class Store {
       firebase.firestore().collection("inventory").doc(id).delete();
       this.setNotificationIsShown(true);
       this.setNotificationMessage('Оборудование было успешно удалено');
+      this.refreshItemsData();
     }
 
     public updateItem(id: string | undefined, name: string, count: number): void{
@@ -108,6 +112,7 @@ class Store {
       })
       this.setNotificationIsShown(true)
       this.setNotificationMessage('Оборудование было успешно обновлено');
+      this.refreshItemsData();
     }
 
     public nodeIsEmpty(nodeId:string) {
@@ -128,6 +133,7 @@ class Store {
       })
       this.setNotificationIsShown(true)
       this.setNotificationMessage('Оборудование было успешно добавлено');
+      this.refreshItemsData();
     }
 
     public setActiveNodeData(data:ActiveNodeInfoData): void {

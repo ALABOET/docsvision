@@ -1,4 +1,4 @@
-import store , {ItemsData} from "../../stores/store";
+import store from "../../stores/store";
 import classNames from './ItemsTab.module.scss'
 import {observer} from "mobx-react";
 import {Button, TextField, Typography} from "@mui/material";
@@ -32,7 +32,7 @@ const ItemsTab = observer(() => {
           Активный узел: {store.activeNodeData.nodeName ? <div className={classNames.activeNode}>{store.activeNodeData.nodeName}</div> : 'не выбран'}
         </Typography>
           {store.activeNodeData.nodeName && (store.getItems().map((item: any) => {
-            return (<div key={item.id}><Item
+            return (<div style={{margin: '10px 0'}} key={item.id}><Item
               itemCount={item.data.count}
               itemId={item.id}
               itemName={item.data.name}
@@ -46,7 +46,7 @@ const ItemsTab = observer(() => {
         <Typography
           variant="h5"
           align="center"
-          sx={{marginBottom: '10px'}}
+          sx={{margin: '25px 0 10px 0'}}
         >
           Добавление оборудования
         </Typography>
