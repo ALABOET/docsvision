@@ -1,0 +1,38 @@
+.root {
+  width: 500px;
+  background: aliceblue;
+  border-radius: 10px;
+  padding: 20px;
+  align-self: center;
+  transition: all .3s ease;
+  overflow: auto;
+  &:hover {
+    box-shadow: 0 0 10px rebeccapurple;
+  }
+  .text {
+    text-align: center;
+    .activeNode {
+      color: rebeccapurple;
+      font-size: 18px;
+      margin: 10px 0;
+    }
+  }
+  .controls {
+    margin-top: 15px;
+    .inputs {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+  .item {
+    text-align: center;
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+    }
+  }
+  @media screen and (max-width: 1300px) {
+    width: 100%;
+  }
+}

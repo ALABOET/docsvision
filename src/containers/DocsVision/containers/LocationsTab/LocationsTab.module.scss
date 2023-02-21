@@ -1,0 +1,19 @@
+.root {
+  background: aliceblue;
+  padding: 20px;
+  border-radius: 10px;
+  transition: all .3s ease;
+  overflow: auto;
+  &:hover {
+    box-shadow: 0 0 10px rebeccapurple;
+  }
+  .nodeRoot {
+    .node {
+      transition: .5s all ease;
+      &:hover {
+        background: bisque;
+        cursor: pointer;
+      }
+    }
+  }
+}
